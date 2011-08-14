@@ -1,0 +1,44 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+SHA1 3f62531443583f5c754701974651994363dfb3f2 Changes
+SHA1 c0c5d8d3db55216f0a7da679b566b7473b820d93 INSTALL
+SHA1 0b9ba721d88fc4c004cfe7ebe970686db5c24784 LICENSE
+SHA1 76c246ef40f015c9fa46d3d7602534cd7adc2503 MANIFEST
+SHA1 8905884024dc4d03ecc81139a63bf7de64a26cf8 MANIFEST.SKIP
+SHA1 37aabb07b4cbe17242c6b04f5e6030bca46329d9 META.json
+SHA1 51ed4783d38a6d967f8e1bb4a372e12159401629 META.yml
+SHA1 463d77ba8763720b81e1216afc5bb69da23a067f Makefile.PL
+SHA1 ecc4cd59fcd5e5e390c4023ff0b9987e75125793 README
+SHA1 e9f3c4ee1be00b685c5a023e33671fd22160f1e8 dist.ini
+SHA1 f08a20e2f97a05cb51d6b4c097fd308fb774da76 lib/MorboDB.pm
+SHA1 e5d3ea852e1810520b6a6526ed9bed7882177ba6 lib/MorboDB/Collection.pm
+SHA1 bf4c3aac93fb166cd3abcb1f4a2ec2fb33d32c21 lib/MorboDB/Cursor.pm
+SHA1 9bc8e6dee4f16997bf1820c36d2bdbf5d9ca2982 lib/MorboDB/Database.pm
+SHA1 1413218af6bfa865237ff170f982f17e1445b0f0 lib/MorboDB/OID.pm
+SHA1 c22691d214ed5cd14698c52542472c351f307ed1 t/00-load.t
+SHA1 17e3495c74300d5a32aba56bd06ded4c0a45ee4d t/01-manual_oids.t
+SHA1 61be4d3eaa824ca4471bcc865757f662fcc0e017 t/02-automatic_oids.t
+SHA1 87768d177f8c2e2df9c591cde869e7c8a245555e t/release-dist-manifest.t
+SHA1 9433c240fe590bc404ab68ff63984df763e347ed t/release-pod-coverage.t
+SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iF4EAREIAAYFAk5IRO4ACgkQa4OHQAFM10fYowD+M1O+ukTg/9ElYeTSLx7e9Xoo
+Mo04GFIc/3Ayb3+HM44A/RyHj87wKX6EtGRVAlfmRaCaWkISGQ5EVG8Pr7a1m4m/
+=IuM5
+-----END PGP SIGNATURE-----
