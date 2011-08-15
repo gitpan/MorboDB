@@ -27,4 +27,4 @@ requires:
 resources:
   homepage: http://github.com/ido50/MorboDB
   repository: http://github.com/ido50/MorboDB
-version: 0.001
+version: 0.001001
