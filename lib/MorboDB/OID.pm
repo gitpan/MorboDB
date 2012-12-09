@@ -6,7 +6,7 @@ use Any::Moose;
 use Carp;
 use Data::UUID;
 
-our $VERSION = "0.001001";
+our $VERSION = "0.001002";
 $VERSION = eval $VERSION;
 
 =head1 NAME
@@ -15,7 +15,7 @@ MorboDB::OID - An object ID in MorboDB
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 SYNOPSIS
 

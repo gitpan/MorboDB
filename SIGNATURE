@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.69.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,21 +14,21 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA256
 
-SHA1 a37d524ddd25535731ce75fa8c3337ee7b31df2a Changes
+SHA1 ac6a64a49eca2996127a92e37e692273701cb491 Changes
 SHA1 c0c5d8d3db55216f0a7da679b566b7473b820d93 INSTALL
-SHA1 0b9ba721d88fc4c004cfe7ebe970686db5c24784 LICENSE
+SHA1 f88865d7b93ef635cb59c8787bbfd3138c7d873f LICENSE
 SHA1 76c246ef40f015c9fa46d3d7602534cd7adc2503 MANIFEST
 SHA1 8905884024dc4d03ecc81139a63bf7de64a26cf8 MANIFEST.SKIP
-SHA1 31ae4be2b9033141fb30d8f81531975460168c9a META.json
-SHA1 edaa96b92e3860f48181e3caf304b348877f3e8f META.yml
-SHA1 6c5e28e9d214dd6cab02bfe1d97de3904635ea47 Makefile.PL
-SHA1 36217506a03589ac1432446d10c1522a2d574ec3 README
+SHA1 3cbf72c53eb633d8dd1042708a3e96c2cece4275 META.json
+SHA1 53a00b4a8840cf9f79b595aa8649c59be29d8306 META.yml
+SHA1 113b340addcfa6806dbde9eee3a6e83f34195d13 Makefile.PL
+SHA1 8847512bf06630dc812dd106aab4eb1e84873a8e README
 SHA1 e9f3c4ee1be00b685c5a023e33671fd22160f1e8 dist.ini
-SHA1 6823b7f2bb8c37751c301d2fd5d04e39f7860d6f lib/MorboDB.pm
-SHA1 d9e36b9f008956ab43febafa980f11a22451030e lib/MorboDB/Collection.pm
-SHA1 bad4f2ced6e73205429edf4f0f9ebb988058799b lib/MorboDB/Cursor.pm
-SHA1 889833c114c40fa24f52c08721191f91fbbfdd80 lib/MorboDB/Database.pm
-SHA1 f55f17d8cf24cc039b7efd4d4aa98d6918e41b60 lib/MorboDB/OID.pm
+SHA1 1eabbdd635b19b59f9486ab642eaba0240113c3d lib/MorboDB.pm
+SHA1 29a7721f3cf2dcec83a246481ce241890ecf89c5 lib/MorboDB/Collection.pm
+SHA1 197baf7bda32f7927752b9bb3021ec45839430f8 lib/MorboDB/Cursor.pm
+SHA1 e1ed353ba755e04b0531f84818be4c828d7ee92f lib/MorboDB/Database.pm
+SHA1 7a47e15e10b3e7f9ceb1f910f0ead6b0a5ad69a9 lib/MorboDB/OID.pm
 SHA1 c22691d214ed5cd14698c52542472c351f307ed1 t/00-load.t
 SHA1 17e3495c74300d5a32aba56bd06ded4c0a45ee4d t/01-manual_oids.t
 SHA1 61be4d3eaa824ca4471bcc865757f662fcc0e017 t/02-automatic_oids.t
@@ -36,9 +36,9 @@ SHA1 87768d177f8c2e2df9c591cde869e7c8a245555e t/release-dist-manifest.t
 SHA1 9433c240fe590bc404ab68ff63984df763e347ed t/release-pod-coverage.t
 SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Version: GnuPG v2.0.19 (GNU/Linux)
 
-iF4EAREIAAYFAk5JoDwACgkQa4OHQAFM10dutQD/UomS2E5CpwuF2RrAmTSYma9f
-MJdx1DKKWeBxvliObYEBAKHY910kj28QEYNMDad3vBHsK9Vg2oqP/pN6hCiRI+qA
-=jH5k
+iF4EAREIAAYFAlDE3fUACgkQa4OHQAFM10caewEAhHLEvFlVw+Sihkmkwfp6Re3Z
+og1qYoW//T4B9CCduKEA/1LGATefb2Vf1bFjDLd8MrrMLgWOatvKvIt57h/9lGVy
+=fOrb
 -----END PGP SIGNATURE-----

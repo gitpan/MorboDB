@@ -9,32 +9,34 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'In-memory database, mostly-compatible clone of MongoDB',
-  'AUTHOR' => 'Ido Perlmuter <ido@ido50.net>',
-  'BUILD_REQUIRES' => {
-    'Test::More' => '0',
-    'Try::Tiny' => '0',
-    'utf8' => '0'
+  "ABSTRACT" => "In-memory database, mostly-compatible clone of MongoDB",
+  "AUTHOR" => "Ido Perlmuter <ido\@ido50.net>",
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0,
+    "Try::Tiny" => 0,
+    "strict" => 0,
+    "utf8" => 0,
+    "warnings" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'MorboDB',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'MorboDB',
-  'PREREQ_PM' => {
-    'Any::Moose' => '0',
-    'Carp' => '0',
-    'Clone' => '0',
-    'Data::UUID' => '0',
-    'MQUL' => '0.003',
-    'Tie::IxHash' => '0',
-    'boolean' => '0'
+  "DISTNAME" => "MorboDB",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "MorboDB",
+  "PREREQ_PM" => {
+    "Any::Moose" => 0,
+    "Carp" => 0,
+    "Clone" => 0,
+    "Data::UUID" => 0,
+    "MQUL" => "0.003",
+    "Tie::IxHash" => 0,
+    "boolean" => 0
   },
-  'VERSION' => '0.001001',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.001002",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

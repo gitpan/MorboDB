@@ -8,7 +8,7 @@ use Clone qw/clone/;
 use MQUL 0.003 qw/doc_matches/;
 use Tie::IxHash;
 
-our $VERSION = "0.001001";
+our $VERSION = "0.001002";
 $VERSION = eval $VERSION;
 
 =head1 NAME
@@ -17,7 +17,7 @@ MorboDB::Cursor - A cursor/iterator for MorboDB query results
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 SYNOPSIS
 
@@ -396,7 +396,7 @@ sub _query_db {
 		# let's limit (and possibly skip) the results if we need to
 		splice(@docs, 0, $self->_skip)
 			if $self->_skip;
-		splice(@docs, $self->_limit, length(@docs) - $self->_limit)
+		splice(@docs, $self->_limit, scalar(@docs) - $self->_limit)
 			if $self->_limit && scalar @docs > $self->_limit;
 	}
 

@@ -2,7 +2,7 @@ NAME
     MorboDB - In-memory database, mostly-compatible clone of MongoDB
 
 VERSION
-    version 0.001001
+    version 0.001002
 
 SYNOPSIS
             use MorboDB;

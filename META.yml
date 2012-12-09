@@ -5,11 +5,13 @@ author:
 build_requires:
   Test::More: 0
   Try::Tiny: 0
+  strict: 0
   utf8: 0
+  warnings: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200015, CPAN::Meta::Converter version 2.112150'
+generated_by: 'Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -25,6 +27,6 @@ requires:
   boolean: 0
   perl: 5.008
 resources:
-  homepage: http://github.com/ido50/MorboDB
-  repository: http://github.com/ido50/MorboDB
-version: 0.001001
+  homepage: https://github.com/ido50/MorboDB
+  repository: https://github.com/ido50/MorboDB.git
+version: 0.001002
