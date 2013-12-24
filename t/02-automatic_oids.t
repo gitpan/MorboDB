@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use utf8;
 use MorboDB;
-use Test::More tests => 29;
+use Test::More tests => 28;
 use Try::Tiny;
 use Tie::IxHash;
 
@@ -28,7 +28,7 @@ my $id1 = $coll->insert({
 	genres => [qw/comedy drama/],
 	starring => ['Jay Baruchel', 'Carla Gallo', 'Jason Segel'],
 });
-my ($id2, $id3, $id4) = $coll->batch_insert([
+my ($id2, $id3) = $coll->batch_insert([
 	{
 		title => 'How I Met Your Mother',
 		year => 2005,
@@ -41,17 +41,21 @@ my ($id2, $id3, $id4) = $coll->batch_insert([
 		seasons => 1,
 		genres => [qw/comedy drama/],
 		starring => ['Linda Cardellini', 'John Francis Daley', 'James Franco'],
-	}, {
-		title => 'My Name Is Earl',
-		year => 2005,
-		seasons => 4,
-		genres => [qw/comedy/],
-		starring => ['Jason Lee', 'Ethan Suplee', 'Jaime Pressly'],
-	}
+	},
 ]);
+# When there's no _id, save() should perform an insert
+my $id4 = $coll->save({
+   title => 'My Name Is Earl',
+   year => 2005,
+   seasons => 4,
+   genres => [qw/comedy/],
+   starring => ['Jason Lee', 'Ethan Suplee', 'Jaime Pressly'],
+});
 
 is(ref $id1, 'MorboDB::OID', 'insert() returned a MorboDB::OID object');
 is(length($id1->value), 36, 'insert() returned a 36-character long OID');
+is(ref $id4, 'MorboDB::OID', 'save() returned a MorboDB::OID object');
+is(length($id4->value), 36, 'save() returned a 36-character long OID');
 
 # find some documents
 my $curs1 = $coll->find({ _id => $id1 });
@@ -115,16 +119,6 @@ is(ref($up2->{upserted}), 'MorboDB::OID', 'upsert seems to have succeeded');
 my $doc3 = $coll->find_one({ year => { '$gt' => 1996, '$lte' => 1997 } });
 ok($doc3->{title} eq 'Buffy the Vampire Slayer', 'upserted document exists in the database');
 
-# let's see if autoload works okay
-my $coll2 = $db->autoloaded;
-is(ref $coll2, 'MorboDB::Collection', 'autoload on database returned a collection object');
-is($coll2->full_name, 'morbodb_test.autoloaded', 'autoloaded collection object seems okay');
-
-# let's see how child collections work
-my $coll3 = $coll2->subloaded;
-is(ref $coll3, 'MorboDB::Collection', 'autoload on collection returned a collection object');
-is($coll3->full_name, 'morbodb_test.autoloaded.subloaded', 'autoloaded child collection seems okay');
-
 # let's try to remove all Jason Segel starring shows
 my $rem1 = $coll->remove({ starring => 'Jason Segel' });
 is($rem1->{n}, 3, 'removed three documents as expected');
@@ -144,6 +138,10 @@ is($coll->count, 1, 'new document created');
 # and now drop the collection
 $coll->drop;
 is($coll->count, 0, 'dropped collection is empty (as it does not exist)');
+
+# let's check child collections
+my $child = $coll->get_collection('child');
+is($child->name, 'tv_shows.child', 'child collection okay');
 
 # let's drop the database
 

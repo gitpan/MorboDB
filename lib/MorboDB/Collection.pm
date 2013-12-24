@@ -2,15 +2,16 @@ package MorboDB::Collection;
 
 # ABSTRACT: A MorboDB collection
 
-use Any::Moose;
+use Moo;
 use boolean;
 use Carp;
 use Clone qw/clone/;
 use MorboDB::Cursor;
 use MorboDB::OID;
 use MQUL 0.003 qw/update_doc/;
+use Scalar::Util qw/blessed/;
 
-our $VERSION = "0.001002";
+our $VERSION = "1.000000";
 $VERSION = eval $VERSION;
 
 =head1 NAME
@@ -19,7 +20,7 @@ MorboDB::Collection - A MorboDB collection
 
 =head1 VERSION
 
-version 0.001002
+version 1.000000
 
 =head1 SYNOPSIS
 
@@ -51,13 +52,13 @@ by dots. String, created automatically.
 
 =cut
 
-has 'name' => (is => 'ro', isa => 'Str', required => 1);
+has 'name' => (is => 'ro', required => 1);
 
-has 'full_name' => (is => 'ro', isa => 'Str', lazy_build => 1);
+has 'full_name' => (is => 'ro', lazy_build => 1);
 
-has '_database' => (is => 'ro', isa => 'MorboDB::Database', required => 1, weak_ref => 1);
+has '_database' => (is => 'ro', required => 1, weak_ref => 1);
 
-has '_data' => (is => 'ro', isa => 'HashRef', default => sub { {} }, clearer => '_clear_data');
+has '_data' => (is => 'ro', default => sub { {} }, clearer => '_clear_data');
 
 =head1 STATIC FUNCTIONS
 
@@ -95,6 +96,18 @@ sub to_index_string {
 }
 
 =head1 OBJECT METHODS
+
+=head2 get_collection( $name )
+
+Returns a MorboDB::Collection for the collection called C<$name> within this collection.
+
+=cut
+
+sub get_collection {
+	my ($self, $name) = @_;
+
+	return $self->_database->get_collection($self->name.'.'.$name);
+}
 
 =head2 find( [ $query ] )
 
@@ -371,6 +384,8 @@ sub save {
 	confess "document to save must be a hash reference."
 		unless $doc && ref $doc eq 'HASH';
 
+	$doc->{_id} ||= MorboDB::OID->new;
+
 	my $oid = blessed $doc->{_id} && blessed $doc->{_id} eq 'MorboDB::OID' ?
 		$doc->{_id}->value : $doc->{_id};
 
@@ -435,16 +450,6 @@ sub drop {
 	$self->_clear_data;
 	delete $self->_database->_colls->{$self->name};
 	return;
-}
-
-sub AUTOLOAD {
-	my $self = shift;
-
-	our $AUTOLOAD;
-	my $coll = $AUTOLOAD;
-	$coll =~ s/.*:://;
-
-	return $self->_database->get_collection($self->name.'.'.$coll);
 }
 
 sub _build_full_name { $_[0]->_database->name.'.'.$_[0]->name }
@@ -529,7 +534,7 @@ Ido Perlmuter <ido@ido50.net>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2011, Ido Perlmuter C<< ido@ido50.net >>.
+Copyright (c) 2011-2013, Ido Perlmuter C<< ido@ido50.net >>.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself, either version

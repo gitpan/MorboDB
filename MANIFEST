@@ -17,6 +17,7 @@ lib/MorboDB/OID.pm
 t/00-load.t
 t/01-manual_oids.t
 t/02-automatic_oids.t
+t/03-cursor-sort.t
 t/release-dist-manifest.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t

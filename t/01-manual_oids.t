@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use utf8;
 use MorboDB;
-use Test::More tests => 29;
+use Test::More tests => 28;
 use Try::Tiny;
 use Tie::IxHash;
 
@@ -120,15 +120,17 @@ is($up2->{upserted}, 5, 'upsert seems to have succeeded');
 my $doc3 = $coll->find_one({ year => { '$gt' => 1996, '$lte' => 1997 } });
 ok($doc3->{_id} == 5 && $doc3->{title} eq 'Buffy the Vampire Slayer', 'upserted document exists in the database');
 
-# let's see if autoload works okay
-my $coll2 = $db->autoloaded;
-is(ref $coll2, 'MorboDB::Collection', 'autoload on database returned a collection object');
-is($coll2->full_name, 'morbodb_test.autoloaded', 'autoloaded collection object seems okay');
+# let's try to make a change and save() the Buffy document
+push @{ $doc3->{genres} }, "vampires";
+$coll->save($doc3);
 
-# let's see how child collections work
-my $coll3 = $coll2->subloaded;
-is(ref $coll3, 'MorboDB::Collection', 'autoload on collection returned a collection object');
-is($coll3->full_name, 'morbodb_test.autoloaded.subloaded', 'autoloaded child collection seems okay');
+# let's make sure the save worked
+my $doc4 = $coll->find_one({ year => { '$gt' => 1996, '$lte' => 1997 } });
+ok($doc4->{_id} == 5, 'saved document still exists in database');
+is_deeply
+   $doc4->{genres},
+   [qw/action drama fantasy vampires/],
+   'saved document got its genre field updated';
 
 # let's try to remove all Jason Segel starring shows
 my $rem1 = $coll->remove({ starring => 'Jason Segel' });
@@ -149,6 +151,10 @@ is($coll->count, 1, 'new document created');
 # and now drop the collection
 $coll->drop;
 is($coll->count, 0, 'dropped collection is empty (as it does not exist)');
+
+# let's check child collections
+my $child = $coll->get_collection('child');
+is($child->name, 'tv_shows.child', 'child collection okay');
 
 # let's drop the database
 
